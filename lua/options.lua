@@ -22,4 +22,4 @@ vim.opt.ignorecase = true
 
 vim.opt.termguicolors = true
 
-
+vim.g.mapleader = " "
