@@ -7,7 +7,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
         "clone",
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
+        "--branch=stable", -- latest stable releasepl
         lazypath,
     })
 end
@@ -273,5 +273,86 @@ require("lazy").setup({
                 }
             })
         end
+    },
+    {
+        "github/copilot.vim"
+    },
+    {
+        "rmgatti/auto-session",
+        config = function()
+            require("auto-session").setup({
+                auto_restore_enabled = true,
+                auto_save_enabled = true,
+                auto_session_enable_last_session = true,
+                auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
+            })
+        end
+    },
+    -- {
+    --     "iabdelkareem/csharp.nvim",
+    --     dependencies = {
+    --         "williamboman/mason.nvim", -- Required, automatically installs omnisharp
+    --         "mfussenegger/nvim-dap",
+    --         "Tastyep/structlog.nvim",  -- Optional, but highly recommended for debugging
+    --     },
+    --     config = function()
+    --         require("mason").setup() -- Mason setup must run before csharp
+    --         require("csharp").setup({
+    --             lsp = {
+    --                 -- When set to false, csharp.nvim won't launch omnisharp automatically.
+    --                 enable = true,
+    --                 -- When set, csharp.nvim won't install omnisharp automatically. Instead, the omnisharp instance in the cmd_path will be used.
+    --                 cmd_path = nil,
+    --                 -- The default timeout when communicating with omnisharp
+    --                 default_timeout = 1000,
+    --                 -- Settings that'll be passed to the omnisharp server
+    --                 enable_editor_config_support = true,
+    --                 organize_imports = true,
+    --                 load_projects_on_demand = false,
+    --                 enable_analyzers_support = true,
+    --                 enable_import_completion = true,
+    --                 include_prerelease_sdks = true,
+    --                 analyze_open_documents_only = false,
+    --                 enable_package_auto_restore = true,
+    --                 -- Launches omnisharp in debug mode
+    --                 debug = false,
+    --                 -- The capabilities to pass to the omnisharp server
+    --                 capabilities = nil,
+    --                 -- on_attach function that'll be called when the LSP is attached to a buffer
+    --                 on_attach = nil
+    --             },
+    --             logging = {
+    --                 -- The minimum log level.
+    --                 level = "INFO",
+    --             },
+    --             dap = {
+    --                 -- When set, csharp.nvim won't launch install and debugger automatically. Instead, it'll use the debug adapter specified.
+    --                 --- @type string?
+    --                 adapter_name = nil,
+    --             }
+    --         })
+    --         require("csharp").go_to_definition()
+    --         require("csharp").fix_all()
+    --         require("csharp").fix_usings()
+    --         require("csharp").run_project()
+    --         require("csharp").debug_project()
+    --     end
+    -- },
+    -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
+    {
+        'numToStr/Comment.nvim',
+        opts = {
+            -- add any options here
+        },
+        lazy = false,
+    },
+    {
+        "smjonas/inc-rename.nvim",
+        config = function()
+            require("inc_rename").setup()
+            vim.keymap.set("n", "<leader>rn", function()
+                return ":IncRename " .. vim.fn.expand("<cword>")
+            end, { expr = true })
+        end,
     }
 })
