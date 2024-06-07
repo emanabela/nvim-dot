@@ -24,7 +24,7 @@ require("lazy").setup({
         "nvim-treesitter/nvim-treesitter",
         config = function()
             require("nvim-treesitter.configs").setup({
-                ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+                ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "go", "gomod", "gosum", "gowork" },
 
                 auto_install = true,
 
@@ -199,6 +199,7 @@ require("lazy").setup({
                     css = { { "prettierd", "prettier" } },
                     scss = { { "prettierd", "prettier" } },
                     sh = { { "shellcheck" } },
+                    go = {{"gofump"}}
                 },
             })
 
